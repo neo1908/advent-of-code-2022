@@ -79,7 +79,7 @@ mod tests
 {
     use super::*;
 
-    const INPUT: &str = "/data/code/rust/advent-of-code-2022/src/test_inputs";
+    const INPUT: &str = "src/test_inputs/day1_example.txt";
 
     #[test]
     fn test_example_input()
