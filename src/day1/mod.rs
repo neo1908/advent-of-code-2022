@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 use std::fs::File;
-use std::io::{BufRead, BufReader, Error};
+use std::io::{BufRead, BufReader};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct Elf
