@@ -55,15 +55,15 @@ pub fn compute_calories(path: &str) -> Result<Vec<Elf>, Box<dyn std::error::Erro
     // It'd be nice to do this in one go - detect the last line as part of the loop
     computed_calories.push(Elf{id: elf_id, calories: elf_calories });
 
-    return Ok(computed_calories);
+    Ok(computed_calories)
 }
 
-pub fn find_elf_with_largest_calories(computed_calories: &Vec<Elf>) -> Option<&Elf>
+pub fn find_elf_with_largest_calories(computed_calories: &[Elf]) -> Option<&Elf>
 {
-    computed_calories.into_iter().reduce(|a,b| if a.calories > b.calories {a} else { b })
+    computed_calories.iter().reduce(|a,b| if a.calories > b.calories {a} else { b })
 }
 
-pub fn compute_total_calories_of_slice(elves: &Vec<Elf>, slice_size: usize, order: bool) -> Option<u32>
+pub fn compute_total_calories_of_slice(elves: &[Elf], slice_size: usize, order: bool) -> Option<u32>
 {
     let mut local_vec = elves.to_vec();
     if order
@@ -71,7 +71,7 @@ pub fn compute_total_calories_of_slice(elves: &Vec<Elf>, slice_size: usize, orde
         local_vec.sort();
     }
 
-    local_vec.as_slice()[0..slice_size].into_iter().map(|e| e.calories).reduce(|a,b| a + b )
+    local_vec.as_slice()[0..slice_size].iter().map(|e| e.calories).reduce(|a,b| a + b )
 }
 
 #[cfg(test)]
