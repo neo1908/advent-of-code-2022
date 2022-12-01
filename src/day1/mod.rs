@@ -79,6 +79,8 @@ mod tests
 {
     use super::*;
 
+    const INPUT: &str = "/data/code/rust/advent-of-code-2022/src/test_inputs";
+
     #[test]
     fn test_example_input()
     {
@@ -89,14 +91,14 @@ mod tests
         expected.push(Elf{id: 3, calories: 24000});
         expected.push(Elf{id: 4, calories: 10000});
 
-        assert_eq!(expected, compute_calories("inputs/day1_example.txt").unwrap() );
+        assert_eq!(expected, compute_calories( INPUT ).unwrap() );
     }
 
     #[test]
     fn test_find_largest_elf()
     {
         let expected = Elf{id: 3, calories: 24000};
-        let computed = compute_calories("inputs/day1_example.txt").unwrap();
+        let computed = compute_calories(INPUT ).unwrap();
         let result = find_elf_with_largest_calories(&computed ).unwrap();
 
         assert_eq!(&expected, result);
@@ -106,7 +108,7 @@ mod tests
     fn test_compute_total_calories()
     {
         let expected = 45000;
-        let mut computed = compute_calories("inputs/day1_example.txt").unwrap();
+        let mut computed = compute_calories(INPUT ).unwrap();
 
         let result = compute_total_calories_of_slice(&mut computed, 3, true).unwrap();
 
