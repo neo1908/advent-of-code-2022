@@ -1,6 +1,5 @@
 use std::cmp::Ordering;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use crate::utils::file_to_vec;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct Elf {
@@ -22,15 +21,15 @@ impl PartialOrd for Elf {
 }
 
 pub fn compute_calories(path: &str) -> Result<Vec<Elf>, Box<dyn std::error::Error>> {
-    let file = File::open(path).unwrap();
-    let reader = BufReader::new(file);
 
     let mut computed_calories = vec![];
 
     let mut elf_id = 0;
     let mut elf_calories = 0;
 
-    for line in reader.lines() {
+    let lines = file_to_vec(path);
+
+    for line in lines {
         let parsed_line = line?;
 
         if parsed_line.is_empty() {

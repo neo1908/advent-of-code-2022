@@ -1,6 +1,11 @@
 mod day1;
+mod day2;
+mod utils;
 
 fn main() {
+
+    println!("----- day1");
+
     let computed_calories =
         day1::compute_calories("inputs/day1.txt").expect("Error when computing calories");
 
@@ -11,4 +16,12 @@ fn main() {
     let top_3_calorie_total = day1::compute_total_calories_of_slice(&computed_calories, 3, true)
         .expect("Error when computing slice total");
     println!("Top 3 total {}", top_3_calorie_total);
+
+    println!("----- day2");
+
+    let computed_score = day2::part1_calculate_expected_score("inputs/day2.txt");
+    println!("Part 1 total score {}", computed_score);
+
+    let part2_computed_score = day2::part2_calculate_correct_strategy_score("inputs/day2.txt");
+    println!("Part 2 total score {}", part2_computed_score);
 }
