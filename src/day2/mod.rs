@@ -37,23 +37,18 @@ pub fn part1_calculate_expected_score(input: &str) -> i32 {
     let mut score: i32 = 0;
 
     for line in lines {
-        match line {
-            Ok(x) => {
-                score += match x.as_ref() {
-                    "A X" => 4,
-                    "A Y" => 8,
-                    "A Z" => 3,
-                    "B X" => 1,
-                    "B Y" => 5,
-                    "B Z" => 9,
-                    "C X" => 7,
-                    "C Y" => 2,
-                    "C Z" => 6,
-                    _ => unreachable!(),
-                };
-            }
-            Err(e) => println!("Error reading file {:?}", e),
-        }
+        score += match line.as_ref() {
+            "A X" => 4,
+            "A Y" => 8,
+            "A Z" => 3,
+            "B X" => 1,
+            "B Y" => 5,
+            "B Z" => 9,
+            "C X" => 7,
+            "C Y" => 2,
+            "C Z" => 6,
+            _ => unreachable!(),
+        };
     }
 
     score
@@ -65,29 +60,24 @@ pub fn part2_calculate_correct_strategy_score(input: &str) -> i32 {
     let mut score = 0;
 
     for line in lines {
-        match line {
-            Ok(x) => {
-                let round_parts = x.split_whitespace().collect::<Vec<&str>>();
-                let round_result = RoundResult::of(round_parts[1]);
-                let needed_play = round_result.needed(round_parts[0]);
+        let round_parts = line.split_whitespace().collect::<Vec<&str>>();
+        let round_result = RoundResult::of(round_parts[1]);
+        let needed_play = round_result.needed(round_parts[0]);
 
-                let play = round_parts[0].to_owned() + " " + needed_play;
+        let play = round_parts[0].to_owned() + " " + needed_play;
 
-                score += match play.as_ref() {
-                    "A A" => 4,
-                    "A B" => 8,
-                    "A C" => 3,
-                    "B A" => 1,
-                    "B B" => 5,
-                    "B C" => 9,
-                    "C A" => 7,
-                    "C B" => 2,
-                    "C C" => 6,
-                    _ => unreachable!(),
-                };
-            }
-            Err(e) => println!("Error reading file {:?}", e),
-        }
+        score += match play.as_ref() {
+            "A A" => 4,
+            "A B" => 8,
+            "A C" => 3,
+            "B A" => 1,
+            "B B" => 5,
+            "B C" => 9,
+            "C A" => 7,
+            "C B" => 2,
+            "C C" => 6,
+            _ => unreachable!(),
+        };
     }
 
     score

@@ -24,4 +24,9 @@ fn main() {
 
     let part2_computed_score = day2::part2_calculate_correct_strategy_score("inputs/day2.txt");
     println!("Part 2 total score {}", part2_computed_score);
+
+    println!("----- day3");
+
+    let priority_total = day3::find_sum_of_priorities("inputs/day3.txt");
+    println!("Priority total {}", priority_total);
 }

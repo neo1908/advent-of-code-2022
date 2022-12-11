@@ -29,9 +29,7 @@ pub fn compute_calories(path: &str) -> Result<Vec<Elf>, Box<dyn std::error::Erro
     let lines = file_to_vec(path);
 
     for line in lines {
-        let parsed_line = line?;
-
-        if parsed_line.is_empty() {
+        if line.is_empty() {
             computed_calories.push(Elf {
                 id: elf_id,
                 calories: elf_calories,
@@ -39,7 +37,7 @@ pub fn compute_calories(path: &str) -> Result<Vec<Elf>, Box<dyn std::error::Erro
             elf_id += 1;
             elf_calories = 0;
         } else {
-            elf_calories += parsed_line.parse::<u32>()?;
+            elf_calories += line.parse::<u32>()?;
         }
     }
 
