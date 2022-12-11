@@ -1,5 +1,5 @@
-use std::cmp::Ordering;
 use crate::utils::file_to_vec;
+use std::cmp::Ordering;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct Elf {
@@ -21,7 +21,6 @@ impl PartialOrd for Elf {
 }
 
 pub fn compute_calories(path: &str) -> Result<Vec<Elf>, Box<dyn std::error::Error>> {
-
     let mut computed_calories = vec![];
 
     let mut elf_id = 0;
@@ -59,7 +58,11 @@ pub fn find_elf_with_largest_calories(computed_calories: &[Elf]) -> Option<&Elf>
         .reduce(|a, b| if a.calories > b.calories { a } else { b })
 }
 
-pub fn compute_total_calories_of_slice(elves: &[Elf], slice_size: usize, order: bool) -> Option<u32> {
+pub fn compute_total_calories_of_slice(
+    elves: &[Elf],
+    slice_size: usize,
+    order: bool,
+) -> Option<u32> {
     let mut local_vec = elves.to_vec();
     if order {
         local_vec.sort();

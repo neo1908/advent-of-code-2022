@@ -1,9 +1,9 @@
 mod day1;
 mod day2;
+mod day3;
 mod utils;
 
 fn main() {
-
     println!("----- day1");
 
     let computed_calories =

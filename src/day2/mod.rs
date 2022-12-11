@@ -4,24 +4,21 @@ use crate::utils::file_to_vec;
 enum RoundResult {
     Win,
     Draw,
-    Loss
+    Loss,
 }
 
 impl RoundResult {
-    pub fn of(needed: &str) -> RoundResult
-    {
+    pub fn of(needed: &str) -> RoundResult {
         match needed {
             "X" => Loss,
             "Y" => Draw,
             "Z" => Win,
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
-    pub fn needed<'a>(&'a self, play: &'a str) -> &str
-    {
-        match (self, play)
-        {
+    pub fn needed<'a>(&'a self, play: &'a str) -> &str {
+        match (self, play) {
             (Win, "A") => "B",
             (Win, "B") => "C",
             (Win, "C") => "A",
@@ -29,13 +26,12 @@ impl RoundResult {
             (Loss, "B") => "A",
             (Loss, "C") => "B",
             (Draw, _) => play,
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 }
 
-pub fn part1_calculate_expected_score(input: &str) -> i32
-{
+pub fn part1_calculate_expected_score(input: &str) -> i32 {
     let lines = file_to_vec(input);
 
     let mut score: i32 = 0;
@@ -53,18 +49,17 @@ pub fn part1_calculate_expected_score(input: &str) -> i32
                     "C X" => 7,
                     "C Y" => 2,
                     "C Z" => 6,
-                    _ => unreachable!()
+                    _ => unreachable!(),
                 };
-            },
-            Err(e) => println!("Error reading file {:?}", e)
+            }
+            Err(e) => println!("Error reading file {:?}", e),
         }
     }
 
     score
 }
 
-pub fn part2_calculate_correct_strategy_score(input: &str) -> i32
-{
+pub fn part2_calculate_correct_strategy_score(input: &str) -> i32 {
     let lines = file_to_vec(input);
 
     let mut score = 0;
@@ -88,10 +83,10 @@ pub fn part2_calculate_correct_strategy_score(input: &str) -> i32
                     "C A" => 7,
                     "C B" => 2,
                     "C C" => 6,
-                    _ => unreachable!()
+                    _ => unreachable!(),
                 };
             }
-            Err(e) => println!("Error reading file {:?}", e)
+            Err(e) => println!("Error reading file {:?}", e),
         }
     }
 
@@ -105,8 +100,7 @@ mod tests {
     const INPUT: &str = "src/test_inputs/day2_example.txt";
 
     #[test]
-    fn test_example_input()
-    {
+    fn test_example_input() {
         let expected = 15;
         let result = part1_calculate_expected_score(INPUT);
 
@@ -114,8 +108,7 @@ mod tests {
     }
 
     #[test]
-    fn test_needed_draw()
-    {
+    fn test_needed_draw() {
         let expected = "A";
         let result = Draw.needed("A");
 
@@ -123,8 +116,7 @@ mod tests {
     }
 
     #[test]
-    fn test_needed_win()
-    {
+    fn test_needed_win() {
         let expected = "A";
         let result = Win.needed("C");
 
@@ -132,8 +124,7 @@ mod tests {
     }
 
     #[test]
-    fn test_needed_loss()
-    {
+    fn test_needed_loss() {
         let expected = "A";
         let result = Loss.needed("B");
 
@@ -141,10 +132,9 @@ mod tests {
     }
 
     #[test]
-    fn test_part2()
-    {
+    fn test_part2() {
         let expected = 12;
-        let result = part2_calculate_correct_strategy_score(INPUT );
+        let result = part2_calculate_correct_strategy_score(INPUT);
 
         assert_eq!(expected, result);
     }
