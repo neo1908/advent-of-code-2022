@@ -24,8 +24,3 @@ repos:
         language: system
         files: '\.rs$'
         entry: cargo fmt -- --check
-      - id: clippy
-        name: Clippy
-        language: system
-        files: '\.rs$'
-        entry: cargo clippy
