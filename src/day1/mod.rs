@@ -56,11 +56,7 @@ pub fn find_elf_with_largest_calories(computed_calories: &[Elf]) -> Option<&Elf>
         .reduce(|a, b| if a.calories > b.calories { a } else { b })
 }
 
-pub fn compute_total_calories_of_slice(
-    elves: &[Elf],
-    slice_size: usize,
-    order: bool,
-) -> Option<u32> {
+pub fn compute_total_calories_of_slice(elves: &[Elf], slice_size: usize, order: bool) -> Option<u32> {
     let mut local_vec = elves.to_vec();
     if order {
         local_vec.sort();
@@ -81,36 +77,18 @@ mod tests {
     #[test]
     fn test_example_input() {
         let mut expected = vec![];
-        expected.push(Elf {
-            id: 0,
-            calories: 6000,
-        });
-        expected.push(Elf {
-            id: 1,
-            calories: 4000,
-        });
-        expected.push(Elf {
-            id: 2,
-            calories: 11000,
-        });
-        expected.push(Elf {
-            id: 3,
-            calories: 24000,
-        });
-        expected.push(Elf {
-            id: 4,
-            calories: 10000,
-        });
+        expected.push(Elf { id: 0, calories: 6000 });
+        expected.push(Elf { id: 1, calories: 4000 });
+        expected.push(Elf { id: 2, calories: 11000 });
+        expected.push(Elf { id: 3, calories: 24000 });
+        expected.push(Elf { id: 4, calories: 10000 });
 
         assert_eq!(expected, compute_calories(INPUT).unwrap());
     }
 
     #[test]
     fn test_find_largest_elf() {
-        let expected = Elf {
-            id: 3,
-            calories: 24000,
-        };
+        let expected = Elf { id: 3, calories: 24000 };
         let computed = compute_calories(INPUT).unwrap();
         let result = find_elf_with_largest_calories(&computed).unwrap();
 

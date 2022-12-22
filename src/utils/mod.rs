@@ -13,7 +13,7 @@ pub fn file_to_vec(path: &str) -> Vec<String> {
             Err(e) => {
                 println!("Failed to read file {}", e);
                 panic!();
-            }
+            },
         })
         .collect()
 }
