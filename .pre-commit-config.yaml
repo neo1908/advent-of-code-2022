@@ -28,4 +28,4 @@ repos:
         name: Clippy
         language: system
         files: '\.rs$'
-        entry: cargo clippy --
+        entry: cargo clippy
