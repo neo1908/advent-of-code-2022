@@ -1,0 +1,31 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-byte-order-marker  # Forbid UTF-8 byte-order markers
+      # Check for files with names that would conflict on a case-insensitive
+      # filesystem like MacOS HFS+ or Windows FAT.
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: detect-aws-credentials
+      - id: detect-private-key
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: check-toml
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: Cargo Format
+        language: system
+        files: '\.rs$'
+        entry: cargo fmt -- --check
+      - id: clippy
+        name: Clippy
+        language: system
+        files: '\.rs$'
+        entry: cargo clippy
