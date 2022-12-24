@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 mod utils;
 
 fn main() {
@@ -30,4 +31,11 @@ fn main() {
 
     let badge_priority_total = day3::find_priority_sum_of_badges("inputs/day3.txt");
     println!("Badge priority total {}", badge_priority_total);
+
+    println!("----- day3");
+    let total_overlapped_pairings = day4::find_overlapping_pairs_count("inputs/day4.txt");
+    println!("Overlapped pairing {}", total_overlapped_pairings);
+
+    let overlapped_pairings = day4::find_pairs_overlapping_anywhere_count("inputs/day4.txt");
+    println!("Pairings overlapping anywhere {}", overlapped_pairings);
 }
